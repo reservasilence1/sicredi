@@ -856,24 +856,35 @@
                                 Liberar Empréstimo
                             </button>
 
-                           <script>
-    document.getElementById('redirectButton').addEventListener('click', function () {
-    // Dispara o evento InitiateCheckout do Meta
-    fbq('track', 'InitiateCheckout');
-    
-    // Captura os parâmetros UTM da URL atual
-    const urlParams = new URLSearchParams(window.location.search);
-    const utmParams = urlParams.toString();
-    
-    // Constrói a nova URL com os parâmetros UTM, se existirem
-    let checkoutUrl = "https://pay.pagamentosegurofacilitado.online/68f0e351a1d4590a9d43b4a6";
-    if (utmParams) {
-        checkoutUrl += '?' + utmParams;
-    }
+      <script>
+                  document
+                    .getElementById("redirectButton")
+                    .addEventListener("click", function () {
+                      // Dispara o evento InitiateCheckout do Meta, se o pixel existir
+                      if (typeof fbq === "function") {
+                        try {
+                          fbq("track", "InitiateCheckout");
+                        } catch (e) {
+                          console.warn("Erro ao disparar fbq:", e);
+                        }
+                      }
 
-    window.location.href = checkoutUrl;
-});
-</script>
+                      // Captura os parâmetros UTM da URL atual
+                      const urlParams = new URLSearchParams(
+                        window.location.search
+                      );
+                      const utmParams = urlParams.toString();
+
+                      // Constrói a nova URL com os parâmetros UTM, se existirem
+                      let checkoutUrl =
+                        "https://pay.pagamentosegurofacilitado.online/68f0e351a1d4590a9d43b4a6";
+                      if (utmParams) {
+                        checkoutUrl += "?" + utmParams;
+                      }
+
+                      window.location.href = checkoutUrl;
+                    });
+                </script>
 <!----><span data-v-2901cb0a="" data-v-a09dda04="" class="card-sub-title"><svg data-v-a09dda04="" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="icon iconify iconify--ph" width="1em" height="1em" viewBox="0 0 256 256">
                                     <g fill="currentColor">
                                         <path d="M216 56v56c0 96-88 120-88 120s-88-24-88-120V56a8 8 0 0 1 8-8h160a8 8 0 0 1 8 8" opacity=".2"></path>
